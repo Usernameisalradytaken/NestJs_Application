@@ -24,7 +24,7 @@ export class AuthController {
     @Body() createUser: CreateUserDto,
     @Session() session: Record<string, any>,
   ) {
-    console.log(createUser);
+    // console.log(createUser);
     const { username, email, password } = createUser;
     const emailRegex =
       /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -65,12 +65,12 @@ export class AuthController {
   @Post('/login')
   async login(@Body() loginUserDto: LoginUserDto) {
     if (loginUserDto && loginUserDto.password && loginUserDto.email) {
-      console.log(loginUserDto);
+      // console.log(loginUserDto);
 
       const user = await this.teamMemberService.findByEmailId(
         loginUserDto.email,
       );
-      console.log(user);
+      // console.log(user);
 
       if (!user) {
         return { message: 'User Not found.' };

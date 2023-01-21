@@ -15,61 +15,67 @@ export class TeamController {
 
   @Post('/createTeam')
   async addTeam(@Body() createTeamDto: CreateTeamDto) {
-    console.log(createTeamDto);
+    // console.log(createTeamDto);
     let data;
-    try{
+    try {
       data = await this.teamService.create(createTeamDto);
-    }catch(error){
-        if(error.message.indexOf("11000") != -1)
-          return { message : "Team name already Taken" }
+    } catch (error) {
+      if (error.message.indexOf('11000') != -1)
+        return { message: 'Team name already Taken' };
     }
-    console.log(data);
+    // console.log(data);
     return data;
   }
 
   @Get('/getTeam')
   async getTeam(@Body() getTeamDto: GetTeamDto) {
-    console.log(getTeamDto);
+    // console.log(getTeamDto);
     const teamData = await this.teamService.findOne(getTeamDto.id);
 
-    
-    let teamMembers = []
+    if (!teamData) return { message: "team doesn't exists" };
 
-    for(let i =0; i <  teamData.team_members.length; i++){
-      const teamMember = await this.teamMemberService.findOne(teamData.team_members[0])
-      delete teamMember.password
-      teamMembers.push(teamMember)
+    let teamMembers = [];
+
+    for (let i = 0; i < teamData.team_members.length; i++) {
+      const teamMember = await this.teamMemberService.findOne(
+        teamData.team_members[0],
+      );
+      delete teamMember.password;
+      teamMembers.push(teamMember);
     }
 
     return {
-      team_members : teamMembers,
-      team_name : teamData.team_name,
-      id : teamData.id
+      team_members: teamMembers,
+      team_name: teamData.team_name,
+      id: teamData.id,
     };
   }
 
-  
-
   @Post('/addTeamMember')
   async addTeamMember(@Body() addTeamMemberDto: AddTeamMemberDto) {
-    console.log(addTeamMemberDto);
+    // console.log(addTeamMemberDto);
     const teamData = await this.teamService.findOne(addTeamMemberDto.id);
+
+    if (!teamData) return { message: "team doesn't exists" };
+
     if (teamData.team_members.indexOf(addTeamMemberDto.teamMemberID) != -1)
-      return { message : "Team Member already added"}
+      return { message: 'Team Member already added' };
 
     teamData.team_members.push(addTeamMemberDto.teamMemberID);
 
-    const tempData = await this.teamMemberService.findOneAndUpdate(addTeamMemberDto.teamMemberID ,{team_id : addTeamMemberDto.id})
-
-    console.log(teamData);
-    
-    const data = await this.teamService.findByIdAndUpdate(
-      teamData.id,
-      { team_members : teamData.team_members },
+    const tempData = await this.teamMemberService.findOneAndUpdate(
+      addTeamMemberDto.teamMemberID,
+      { team_id: addTeamMemberDto.id },
     );
 
-    console.log(data);
-    
+    // console.log(teamData);
+
+    const data = await this.teamService.findByIdAndUpdate(teamData.id, {
+      team_members: teamData.team_members,
+    });
+
+    // console.log(data);
+
     return teamData;
   }
 }

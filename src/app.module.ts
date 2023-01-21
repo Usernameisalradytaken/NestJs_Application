@@ -15,6 +15,7 @@ import { TaskModule } from './Models/Task/task.module';
 import { TeamController } from './api/team/team.controller';
 import { TeamMemberModule } from './Models/TeamMember/teamMember.module';
 import { url } from 'inspector';
+import { MongoService } from './mongo.service';
 import { AuthMiddleware } from './jwt.middleware';
 
 // mongodb+srv://yashmurjani:<password>@cluster0.0ots39l.mongodb.net/?retryWrites=true&w=majority

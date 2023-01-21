@@ -12,7 +12,7 @@ export class TaskController {
 
   @Post('/create')
   async createTask(@Body() createTaskDto: CreateTaskDto) {
-    console.log(createTaskDto);
+    // console.log(createTaskDto);
     const createData = createTaskDto;
     const data = await this.taskService.create(createTaskDto);
     return data;
@@ -20,7 +20,7 @@ export class TaskController {
 
   @Post('/assign')
   async assignTask(@Body() assignTaskDto: AssignTaskDto) {
-    console.log(assignTaskDto);
+    // console.log(assignTaskDto);
     const { id, ...updateQuery } = assignTaskDto;
     const data = await this.taskService.findByIdAndUpdate(id, updateQuery);
     return data;
@@ -28,14 +28,14 @@ export class TaskController {
 
   @Get('/getTaskByAssignee')
   async getAllTask(@Body() getAllTaskDto: GetAllTaskDto) {
-    console.log(getAllTaskDto);
+    // console.log(getAllTaskDto);
     const data = await this.taskService.find({ assignee: getAllTaskDto.id });
     return data;
   }
 
   @Post('/changeStatus')
   async changeStatus(@Body() changeStatusDto: changeStatusDto) {
-    console.log(changeStatusDto);
+    // console.log(changeStatusDto);
     const { id, ...updateQuery } = changeStatusDto;
     const data = await this.taskService.findByIdAndUpdate(id, updateQuery);
     return data;
