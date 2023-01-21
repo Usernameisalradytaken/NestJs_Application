@@ -15,7 +15,6 @@ import { TaskModule } from './Models/Task/task.module';
 import { TeamController } from './api/team/team.controller';
 import { TeamMemberModule } from './Models/TeamMember/teamMember.module';
 import { url } from 'inspector';
-import { MongoService } from './mongo.service';
 import { AuthMiddleware } from './jwt.middleware';
 
 // mongodb+srv://yashmurjani:<password>@cluster0.0ots39l.mongodb.net/?retryWrites=true&w=majority
@@ -26,7 +25,7 @@ import { AuthMiddleware } from './jwt.middleware';
       isGlobal: true,
     }),
     MongooseModule.forRoot(
-      'mongodb+srv://yashmurjani:Ps0S3MdQhkRX8Uwp@cluster0.0ots39l.mongodb.net/nestjs_assignment?retryWrites=true&w=majority',
+      'MONGO DB URL',
     ),
     TeamModule,
     TaskModule,

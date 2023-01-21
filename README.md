@@ -1,73 +1,53 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Nest JS Task
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+- Ability to create multiple tasks with properties(id, description, due_date, assignee, status, etc.)
+- Ability to add a team with multiple team members
+- Ability to assign a task to a team member
+- Ability to load all tasks with the assignee
+- Ability to change the status/properties of task
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+### Structure
 
-## Description
+How to run application
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+> Please add mongoDB url in app.module.ts file and add jwt_secret in auth.controller.ts and jwt.middleware.ts. As i was having trouble working with working with ConfigModule and ConfigService
 
-## Installation
+```
+npm install
+npm run start:dev
 
-```bash
-$ npm install
 ```
 
-## Running the app
+API documents - https://documenter.getpostman.com/view/23688165/2s8ZDYYNGL
 
-```bash
-# development
-$ npm run start
+- Data is added in MongoDB. using nestjs Mongoose client.
 
-# watch mode
-$ npm run start:dev
+3 tables
 
-# production mode
-$ npm run start:prod
-```
+status -
+InActive
+Active
+Completed
+Cancelled
 
-## Test
+tasks - (id, description, task_name, created_by(team_member.id), due_date, assignee(team_member.id)(by default assignee will be himself), status(by default - InActive), etc.)
+team_member - (id, username, email, password, team_id(team.id))
+team - ( id, team_name, team_member[])
 
-```bash
-# unit tests
-$ npm run test
+Routes
 
-# e2e tests
-$ npm run test:e2e
+- `auth/signup` - for create new user, this returns token
+- `auth/login` - for login existing user and return new token
 
-# test coverage
-$ npm run test:cov
-```
+#### Protected Routes
 
-## Support
+- `task/createTask` - for creating new task
+- `task/assignTask` - for assign task to assignee
+- `task/allTask` - for getting all task by assignee
+- `task/changeStatus` - for changing existing task status
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+#### Protected Routes
 
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- `team/addTeam` - for creating new Team. Team_name is primary key
+- `team/getTeam` - for getting Team and its team members
+- `team/addMember` - for creating add team member to existing team.

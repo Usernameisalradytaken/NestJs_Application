@@ -59,6 +59,8 @@ export class TeamController {
 
     teamData.team_members.push(addTeamMemberDto.teamMemberID);
 
+    const tempData = await this.teamMemberService.findOneAndUpdate(addTeamMemberDto.teamMemberID ,{team_id : addTeamMemberDto.id})
+
     console.log(teamData);
     
     const data = await this.teamService.findByIdAndUpdate(

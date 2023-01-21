@@ -1,0 +1,337 @@
+{
+	"info": {
+		"_postman_id": "6f6435db-9bc6-4758-a37b-c2ec034cc632",
+		"name": "Assignment3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23688165"
+	},
+	"item": [
+		{
+			"name": "task create",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2JjMDk3MjM2MzNhOTA4NDZkMzlhNSIsImlhdCI6MTY3NDMwNjEzNywiZXhwIjoxNjc0MzkyNTM3fQ.if9Lh6OqnSkq1fPjjFp_ntaZGiGoKlumZHxACavkut0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\":\"this is first task\",\r\n    \"task_name\":\"first task\",\r\n    \"created_by\":\"asdaksddas2k3kdas\",\r\n    \"due_date\" :\"13-jan-2023\",\r\n    \"assignee\":\"asdasd23asd213dsa\"\r\n    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/task/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "assign Task",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2JjMDk3MjM2MzNhOTA4NDZkMzlhNSIsImlhdCI6MTY3NDMwNjI3MiwiZXhwIjoxNjc0MzkyNjcyfQ.UUP5v4_jjllQDep_kBs_mWM_b409ch58KaHJeUNa1n0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"63cb676c5204123f256e0f1d\",\r\n    \"assignee\": \"apjdpaKDPDASKDPO31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/task/assign",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task",
+						"assign"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "all task",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"asdasd23asd213dsa\"\r\n \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/task/getTaskByAssignee",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task",
+						"getTaskByAssignee"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "change status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"63cb6b9ede2128bbb08ca5d3\",\r\n    \"status\": \"Active\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/task/changeStatus",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"task",
+						"changeStatus"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\" : \"aman\",\r\n    \"email\" : \"aman@gmail.com\",\r\n    \"password\": \"dasdasdasd12321dasd2ad211d2s12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2JjMDk3MjM2MzNhOTA4NDZkMzlhNSIsImlhdCI6MTY3NDMwNDU1MSwiZXhwIjoxNjc0MzkwOTUxfQ.6Hm-gQzaaS8nKLG9UeR60J1VwyCYUn0IK9EIEv0SEHM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"yash@gmail.com\",\r\n    \"password\": \"dasdasdasd12321dasd2ad211d2s12\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add team",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2JjMDk3MjM2MzNhOTA4NDZkMzlhNSIsImlhdCI6MTY3NDMwNjI3MiwiZXhwIjoxNjc0MzkyNjcyfQ.UUP5v4_jjllQDep_kBs_mWM_b409ch58KaHJeUNa1n0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"team_name\": \"Dev\",\r\n    \"team_members\" : [\"63cbea43250063f1436d4756\"]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/team/createTeam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"team",
+						"createTeam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get Team",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2JjMDk3MjM2MzNhOTA4NDZkMzlhNSIsImlhdCI6MTY3NDMwNjI3MiwiZXhwIjoxNjc0MzkyNjcyfQ.UUP5v4_jjllQDep_kBs_mWM_b409ch58KaHJeUNa1n0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\" : \"63cbeab8250063f1436d475e\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/team/getTeam",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"team",
+						"getTeam"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add team member",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzY2JjMDk3MjM2MzNhOTA4NDZkMzlhNSIsImlhdCI6MTY3NDMwNjI3MiwiZXhwIjoxNjc0MzkyNjcyfQ.UUP5v4_jjllQDep_kBs_mWM_b409ch58KaHJeUNa1n0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": \"63cbeab8250063f1436d475e\",\r\n    \"teamMemberID\" : \"63cbea64250063f1436d4759\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/team/addTeamMember",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"team",
+						"addTeamMember"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
