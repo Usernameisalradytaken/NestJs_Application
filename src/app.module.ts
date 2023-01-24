@@ -18,7 +18,7 @@ import { url } from 'inspector';
 import { MongoService } from './mongo.service';
 import { AuthMiddleware } from './jwt.middleware';
 
-// mongodb+srv://yashmurjani:<password>@cluster0.0ots39l.mongodb.net/?retryWrites=true&w=majority
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,7 +26,7 @@ import { AuthMiddleware } from './jwt.middleware';
       isGlobal: true,
     }),
     MongooseModule.forRoot(
-      'MONGO DB URL',
+      '<<MONGODB URI>>',
     ),
     TeamModule,
     TaskModule,

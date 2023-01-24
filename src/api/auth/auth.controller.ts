@@ -49,12 +49,13 @@ export class AuthController {
 
     const token = jwt.sign(
       { id: user.id },
-      this.configService.get('jwt_secret') || "U6gt!WdEht6H:rF0KELs#DD7s@_NfJ/w2hp1h+Z!HIWB*LUKvU:ASpuAKQ2QM3sHew=)DF7ihD3Q-+Z5@l?=qyT:5qGG5ulkd=4y",
+      this.configService.get('jwt_secret') ||
+        'U6gt!WdEht6H:rF0KELs#DD7s@_NfJ/w2hp1h+Z!HIWB*LUKvU:ASpuAKQ2QM3sHew=)DF7ihD3Q-+Z5@l?=qyT:5qGG5ulkd=4y',
       {
         expiresIn: 86400, // 24 hours
       },
     );
-    // session.id = user.id;
+    // session.id = user.id;k
     return {
       user: user.id,
       username: user.username,
@@ -65,12 +66,12 @@ export class AuthController {
   @Post('/login')
   async login(@Body() loginUserDto: LoginUserDto) {
     if (loginUserDto && loginUserDto.password && loginUserDto.email) {
-      // console.log(loginUserDto);
+      console.log(loginUserDto );
 
       const user = await this.teamMemberService.findByEmailId(
         loginUserDto.email,
       );
-      // console.log(user);
+      console.log(user);
 
       if (!user) {
         return { message: 'User Not found.' };
@@ -81,6 +82,9 @@ export class AuthController {
         user.password,
       );
 
+      console.log(user);
+      
+
       if (!passwordIsValid) {
         return {
           message: 'Invalid Password!',
@@ -89,7 +93,8 @@ export class AuthController {
 
       const token = jwt.sign(
         { id: user.id },
-        this.configService.get('jwt_secret') || "U6gt!WdEht6H:rF0KELs#DD7s@_NfJ/w2hp1h+Z!HIWB*LUKvU:ASpuAKQ2QM3sHew=)DF7ihD3Q-+Z5@l?=qyT:5qGG5ulkd=4y",
+        this.configService.get('jwt_secret') ||
+          'U6gt!WdEht6H:rF0KELs#DD7s@_NfJ/w2hp1h+Z!HIWB*LUKvU:ASpuAKQ2QM3sHew=)DF7ihD3Q-+Z5@l?=qyT:5qGG5ulkd=4y',
         {
           expiresIn: 86400, // 24 hours
         },

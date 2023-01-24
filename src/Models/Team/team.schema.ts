@@ -3,7 +3,7 @@ import * as mongoose from 'mongoose';
 export const TeamSchema = new mongoose.Schema({
   team_name: {
     type : String,
-    // unique: true,
+    unique: true,
     // lowercase: true
     required: true
   },

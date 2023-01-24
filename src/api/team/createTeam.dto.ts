@@ -13,8 +13,8 @@ import {
 export class CreateTeamDto {
   @IsString()
   @IsNotEmpty()
-  team_name: string;
+  team_name: String;
   
   @IsArray()
-  team_members: [string];
+  team_members: [String];
 }

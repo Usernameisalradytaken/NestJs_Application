@@ -19,10 +19,22 @@ export class TeamController {
     let data;
     try {
       data = await this.teamService.create(createTeamDto);
+      console.log(data);
+
+      if (createTeamDto.team_members.length > 0) {
+        for (let i = 0; i < createTeamDto.team_members.length; i++) {
+          const teamMember = await this.teamMemberService.findOneAndUpdate(
+            createTeamDto.team_members[i],
+            { $push: { team_id: data._id } },
+          );
+          console.log(teamMember);
+        }
+      }
     } catch (error) {
       if (error.message.indexOf('11000') != -1)
         return { message: 'Team name already Taken' };
     }
+
     // console.log(data);
     return data;
   }
@@ -35,13 +47,16 @@ export class TeamController {
     if (!teamData) return { message: "team doesn't exists" };
 
     let teamMembers = [];
+    console.log(teamData);
 
     for (let i = 0; i < teamData.team_members.length; i++) {
       const teamMember = await this.teamMemberService.findOne(
-        teamData.team_members[0],
+        teamData.team_members[i],
       );
-      delete teamMember.password;
-      teamMembers.push(teamMember);
+
+      let { id, username, email, team_id, created_at } = teamMember;
+
+      teamMembers.push({ id, username, email, team_id, created_at });
     }
 
     return {

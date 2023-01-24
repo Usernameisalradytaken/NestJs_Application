@@ -16,7 +16,7 @@ export const TeamMemberSchema = new mongoose.Schema({
   },
   team_id: {
     type: [String],
-    default: '',
+    // default: '',
   },
   created_date: {
     type: String,

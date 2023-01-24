@@ -19,9 +19,7 @@ export class TeamMemberService {
   }
   async findByEmailId(email: String) {
     return await this.teamMemberModel.findOne({
-      where: {
-        email: email,
-      },
+      email: email,
     });
   }
   async findOne(id: String) {
@@ -32,7 +30,7 @@ export class TeamMemberService {
   }
   async findOneAndUpdate(
     filterQuery: FilterQuery<TeamMember>,
-    updateTeamMember: Partial<TeamMember>,
+    updateTeamMember: Partial<any>,
   ) {
     return this.teamMemberModel.findByIdAndUpdate(
       filterQuery,
